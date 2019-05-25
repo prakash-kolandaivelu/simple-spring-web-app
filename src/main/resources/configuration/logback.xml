@@ -1,0 +1,26 @@
+<!--<configuration scan="true"> To enable the periodic scaning of the logback file for changes. By default it is enabled and scan frequentcy is 1 mins. Frequency can be changed by scanPeriod="30 seconds". Default unit of time is miliseconds-->
+<!--<configuration debug="true"> To print the initilazation logs like : StatusPrinter.print(lc); -->
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <!-- APP_BASE is exported by the shell script as a system variable-->
+    <file>${APP_BASE}/logs/myApp.log</file>
+    <encoder>
+      <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="my.learnings.osgi" level="INFO"/>
+
+<!-- To add the appenders. level here just to control the root logger level.-->
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

@@ -1,0 +1,81 @@
+<assembly
+  xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+  <id>distribution</id>
+  <formats>
+    <format>dir</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>lib</outputDirectory>
+      <includes>
+      <!-- OSGi jars-->
+        <include>org.eclipse.platform:org.eclipse.osgi</include>
+        <include>org.eclipse.platform:org.eclipse.equinox.console</include>
+        <include>org.apache.felix:org.apache.felix.gogo.shell</include>
+        <include>org.apache.felix:org.apache.felix.gogo.runtime</include>
+        <include>org.apache.felix:org.apache.felix.gogo.command</include>
+        <include>org.apache.felix:org.apache.felix.fileinstall</include>
+        <include>org.apache.felix:org.apache.felix.dependencymanager</include>
+        <include>org.osgi:org.osgi.service.cm</include>
+        <include>org.osgi:org.osgi.service.metatype</include>
+      </includes>
+      <unpack>false</unpack>
+      <scope>runtime</scope>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>plugins</outputDirectory>
+      <includes>
+        <!-- logging jars-->
+        <include>org.slf4j:slf4j-api</include>
+        <include>ch.qos.logback:logback-classic</include>
+        <include>ch.qos.logback:logback-core</include>
+        <!-- jetty server jars-->
+        <include>org.eclipse.jetty:jetty-servlet</include>
+        <include>org.eclipse.jetty:jetty-util</include>
+        <include>org.eclipse.jetty:jetty-jndi</include>
+        <include>org.eclipse.jetty:jetty-plus</include>
+        <include>org.eclipse.jetty:jetty-annotations</include>
+        <include>org.eclipse.jetty:jetty-http</include>
+        <include>org.eclipse.jetty:jetty-io</include>
+        <include>org.eclipse.jetty:jetty-security</include>
+        <include>org.eclipse.jetty:jetty-server</include>
+        <include>org.eclipse.jetty:jetty-deploy</include>
+        <include>org.eclipse.jetty:jetty-webapp</include>
+        <include>org.eclipse.jetty:jetty-xml</include>
+        <include>org.eclipse.jetty:jetty-jmx</include>
+        <include>org.eclipse.jetty.osgi:jetty-osgi-boot</include>
+        <!-- OSGi jars-->
+        <include>org.osgi:org.osgi.service.event</include>
+        <include>org.osgi:org.osgi.compendium</include>
+        <!-- Other Utils jars-->
+        <include>org.apache.commons:commons-lang3</include>
+        <include>javax.servlet:javax.servlet-api</include>
+        <include>org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec</include>
+        <include>org.ow2.asm:asm</include>
+        <include>javax.annotation:javax.annotation-api</include>
+        <!-- My learning app jars-->
+        <include>my.learnings:simple-spring-web-app</include>
+      </includes>
+      <unpack>false</unpack>
+      <scope>runtime</scope>
+    </dependencySet>
+  </dependencySets>
+  <fileSets>
+    <fileSet>
+      <directory>
+        src/main/resources/
+      </directory>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>.</directory>
+      <outputDirectory>logs</outputDirectory>
+      <excludes>
+        <exclude>*/**</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+</assembly>
